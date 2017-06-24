@@ -1,0 +1,35 @@
+contextual_links_example.contextual_node_action_form:
+  path: '/node/{node}/example-action'
+  defaults:
+    _title: 'Example action'
+    _form: '\Drupal\contextual_links_example\Form\ContextualLinksExampleNodeActionForm'
+    node: \d+
+  requirements:
+    _access: 'TRUE'
+    _entity_access: 'node.edit'
+
+contextual_links_example.contextual_links_object_list:
+  path: 'examples/contextual-links'
+  defaults:
+    _title: 'Contextual links example list objects'
+    _controller: '\Drupal\contextual_links_example\Controller\CLEController::cle_page'
+  requirements:
+    _access: 'TRUE'
+    contextual_links_example_object: \d+
+
+contextual_links_example.contextual_links_object_view:
+  path: 'examples/contextual-links/{entity_id}'
+  defaults:
+    _title: 'Contextual links example object'
+    _controller: '\Drupal\contextual_links_example\Controller\CLEController::cle_content'
+    entity_id: \d+
+  requirements:
+    _access: 'TRUE'
+
+contextual_links_example.contextual_links_object_edit:
+  path: '/examples/contextual-links/{entity_id}/edit'
+  defaults:
+    _title: 'Contextual links example object'
+    _form: '\Drupal\contextual_links_example\Form\CLEEntityEditForm'
+  requirements:
+    _access: 'TRUE'

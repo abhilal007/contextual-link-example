@@ -1,0 +1,4 @@
+contextual_links_example.configure:
+  route_name: contextual_links_example.contextual_links_object_edit
+  title: 'Edit object'
+  group: 'contextual_links_example'

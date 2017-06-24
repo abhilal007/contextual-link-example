@@ -1,0 +1,7 @@
+name: contextual_links_example
+type: module
+description: 'Example of implementing contextual links.'
+package: 'Example modules'
+core: 8.x
+dependencies:
+  - drupal:examples
