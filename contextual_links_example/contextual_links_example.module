@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Shows how to use Drupal's contextual links functionality.
+ *
+ * @see https://www.drupal.org/docs/8/api/menu-api/providing-module-defined-contextual-links
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function contextual_links_example_theme() {
+  return [
+    'contextual_links_example_entity' => [
+      'template' => 'contextual-links-example-entity',
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Process variables for contextual-links-example-entity.html.twig.
+ */
+function template_preprocess_contextual_links_example_entity(&$variables) {
+  // Here we take the object that is being themed and define some useful
+  // variables that we will print in the template file.
+  $variables['title'] = $variables['element']['#object']->titleContent();
+  $variables['content'] = $variables['element']['#object']->bodyContent();
+}

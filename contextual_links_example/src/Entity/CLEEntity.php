@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains Drupal\contextual_links_example\Entity\CLEEntity.
-*/
 
 namespace Drupal\contextual_links_example\Entity;
 
@@ -32,9 +28,9 @@ class CLEEntity extends Entity {
    *   Renderable array of the entity's body.
    */
   public function bodyContent() {
-    return array(
+    return [
       '#markup' => t('This is the content of example object @id.', ['@id' => $this->id()]),
-    );
+    ];
   }
 
   /**
@@ -44,8 +40,9 @@ class CLEEntity extends Entity {
    *   Renderable array of the entity's title.
    */
   public function titleContent() {
-    return array(
+    return [
       '#markup' => t('Title for example object @id', ['@id' => $this->id()]),
-    );
+    ];
   }
+
 }

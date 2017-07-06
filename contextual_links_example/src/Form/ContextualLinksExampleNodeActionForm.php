@@ -1,10 +1,6 @@
 <?php
-/**
- * @file
- * Contains *Drupal\contextual_links_example\Form\ContextualLinksExampleNodeActionForm.
- */
-namespace Drupal\contextual_links_example\Form;
 
+namespace Drupal\contextual_links_example\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -23,9 +19,9 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
   /**
    * The form ID. Unique string identifying the form.
    *
-   * @see getFormID()
-   *
    * @var string
+   *
+   * @see getFormID()
    */
   protected $formId = "contextual_links_example_node_action";
 
@@ -59,7 +55,7 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
-   * @param \Drupal\node\NodeInterface
+   * @param \Drupal\node\NodeInterface $node
    *   The node from the URL context.
    *
    * @return array
@@ -76,19 +72,6 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
         'This is the page that would allow you to perform an example action on node @nid, named "@title".',
         ['@nid' => $this->getNid(), '@title' => $this->getNodeTitle()]
       ),
-    ];
-
-    $form['actions'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Actions for the node\'s title.'),
-      '#description' => $this->t('Possible actions for the node'),
-      '#default_value' => 'none',
-      '#options' => [
-        'none' => $this->t('Do nothing'),
-        'upper' => $this->t('Capitalize all characters'),
-        'first_chars' => $this->t('Capitalize first characters from each word'),
-        'lower' => $this->t('Lowercase all characters'),
-      ],
     ];
 
     $form['save'] = [
@@ -110,36 +93,14 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
    *   The current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Get the user input.
-    $user_input = $form_state->getUserInput();
-    if (!isset($user_input['actions']) || $user_input['actions'] === 'none') {
-      return;
-    }
-
-    $title = $this->getNodeTitle();
-    switch ($user_input['actions']) {
-      case 'upper':
-        $title = mb_convert_case($title, MB_CASE_UPPER);
-        break;
-
-      case 'first_chars':
-        $title = mb_convert_case($title, MB_CASE_TITLE);
-        break;
-
-      case 'lower':
-        $title = mb_convert_case($title, MB_CASE_LOWER);
-        break;
-    }
-    $this->setNodeTitle($title);
-
     drupal_set_message($this->t('Updated node %title.', ['%title' => $this->getNodeTitle()]));
   }
 
   /**
    * Set the current node.
    *
-   * @param NodeInterface $node
-   *  The node object to be set.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node object to be set.
    */
   protected function setNode(NodeInterface $node) {
     $this->node = $node;
@@ -155,7 +116,6 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
     return $this->node->id();
   }
 
-
   /**
    * Returns the title of the current node.
    *
@@ -166,30 +126,4 @@ class ContextualLinksExampleNodeActionForm extends FormBase {
     return $this->node->getTitle();
   }
 
-
-  /**
-   * Sets the title for the node stored in the form.
-   *
-   * @param string $title
-   *   The new title for the node.
-   */
-  protected function setNodeTitle($title) {
-    $old_title = $this->node->getTitle();
-
-    // Set the revision log.
-    $this->revision_log = $this->t('Title changed from %original to %current.', ['%original' => $old_title, '%current' => $title]);
-
-    // Set and save the changes.
-    $this->node->setTitle($title);
-    $this->node->save();
-
-    // Log the change. The logs can be checked at admin/reports/dblog.
-    $this->logger('content')->notice(
-      'Example node action: %title updated title.',
-      [
-        '%title' => $this->node->getTitle(),
-        'link' => $this->node->link($this->t('View')),
-      ]
-    );
-  }
 }

@@ -1,11 +1,6 @@
 <?php
-/**
- * @file
- * Contains Drupal\contextual_links_example\Form\CLEEntityEditForm.
- */
 
 namespace Drupal\contextual_links_example\Form;
-
 
 use Drupal\contextual_links_example\Entity\CLEEntity;
 use Drupal\Core\Form\FormBase;
@@ -25,9 +20,10 @@ class CLEEntityEditForm extends FormBase {
    *
    * @param array $form
    *   An associative array containing the structure of the form.
-   * @param FormStateInterface $form_state
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   An associative array containing the current state of the form.
    * @param int $entity_id
+   *   Entity ID.
    *
    * @return array
    *   An associative array containing the robot add/edit form.
@@ -77,4 +73,5 @@ class CLEEntityEditForm extends FormBase {
     // Do the actions upon submitting the form.
     drupal_set_message($this->t('The entity was modified.'));
   }
+
 }

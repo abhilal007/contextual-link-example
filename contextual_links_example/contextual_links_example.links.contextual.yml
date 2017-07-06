@@ -2,3 +2,8 @@ contextual_links_example.configure:
   route_name: contextual_links_example.contextual_links_object_edit
   title: 'Edit object'
   group: 'contextual_links_example'
+
+contextual_links_example.example_action:
+  route_name: contextual_links_example.contextual_node_action_form
+  title: 'Example Action'
+  group: 'node'
