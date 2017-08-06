@@ -6,7 +6,6 @@ contextual_links_example.contextual_node_action_form:
   requirements:
     node: \d+
     _access: 'TRUE'
-    _entity_access: 'node.edit'
 
 contextual_links_example.contextual_links_object_list:
   path: 'examples/contextual-links'

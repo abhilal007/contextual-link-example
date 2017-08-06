@@ -6,9 +6,39 @@
  *
  * @see https://www.drupal.org/docs/8/api/menu-api/providing-module-defined-contextual-links
  */
-
+/**
+ * @defgroup contextual_links_example Example: Contextual Links
+ * @ingroup examples
+ * @{
+ * Example of implementing contextual links.
+ *
+ * Contextual links allow site administrators to quickly perform actions
+ * related to elements on a page, without having to hunt through the
+ * administrative interface. As such, you should usually attach them to objects
+ * that appear on the main part of a Drupal site and limit them to a few common
+ * tasks that are frequently performed (for example, "edit" or "configure").
+ * Do not rely on contextual links being present for your module to work
+ * correctly, since they are a convenience feature only. Within Drupal core,
+ * the Contextual Links module must be enabled (and the user viewing the page
+ * must have the "access contextual links" permission) in order for the
+ * contextual links corresponding to actions that the user can perform to
+ * actually be injected into the page's HTML.
+ *
+ * Contextual links have also been moved out of the hook_menu() system in
+ * Drupal 8 and are very similar to local tasks. Use contextual links to
+ * provide contextual operations to users around common Drupal objects
+ * 1appearing on the frontend.
+ *
+ * @see https://www.drupal.org/docs/8/api/menu-api/providing-module-defined-contextual-links
+ *  @endlink
+ *
+ */
 /**
  * Implements hook_theme().
+ * Register a module or theme's theme implementations.The implementations
+ * declared by this hook specify how a particular render array is to be
+ * rendered as HTML.
+ * @see https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Render!theme.api.php/function/hook_theme/8.2.x
  */
 function contextual_links_example_theme() {
   return [
@@ -28,3 +58,6 @@ function template_preprocess_contextual_links_example_entity(&$variables) {
   $variables['title'] = $variables['element']['#object']->titleContent();
   $variables['content'] = $variables['element']['#object']->bodyContent();
 }
+/**
+ * @} End of "defgroup contextual_links_example Example: Contextual Links".
+ */

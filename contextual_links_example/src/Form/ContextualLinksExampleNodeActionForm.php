@@ -12,7 +12,6 @@ use Drupal\node\NodeInterface;
  * Creates a form action for the given node in context. Contains the needed
  * functions for the form and some helper functions.
  *
- * @package Drupal\contextual_links_example\Form
  */
 class ContextualLinksExampleNodeActionForm extends FormBase {
 
