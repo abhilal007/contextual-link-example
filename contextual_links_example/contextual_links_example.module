@@ -6,6 +6,7 @@
  *
  * @see https://www.drupal.org/docs/8/api/menu-api/providing-module-defined-contextual-links
  */
+
 /**
  * @defgroup contextual_links_example Example: Contextual Links
  * @ingroup examples
@@ -30,14 +31,16 @@
  * 1appearing on the frontend.
  *
  * @see https://www.drupal.org/docs/8/api/menu-api/providing-module-defined-contextual-links
- *  @endlink
- *
+ * @endlink
  */
+
 /**
  * Implements hook_theme().
+ *
  * Register a module or theme's theme implementations.The implementations
  * declared by this hook specify how a particular render array is to be
  * rendered as HTML.
+ *
  * @see https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Render!theme.api.php/function/hook_theme/8.2.x
  */
 function contextual_links_example_theme() {
@@ -58,6 +61,7 @@ function template_preprocess_contextual_links_example_entity(&$variables) {
   $variables['title'] = $variables['element']['#object']->titleContent();
   $variables['content'] = $variables['element']['#object']->bodyContent();
 }
+
 /**
  * @} End of "defgroup contextual_links_example Example: Contextual Links".
  */

@@ -5,19 +5,21 @@ namespace Drupal\contextual_links_example\Controller;
 use Drupal\contextual_links_example\Entity\CLEEntity;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\examples\Utility\DescriptionTemplateTrait;
+
 /**
  * Controller routines for contextual example routes.
  */
 class CLEController extends ControllerBase {
 
-use DescriptionTemplateTrait;
+  use DescriptionTemplateTrait;
 
   /**
    * {@inheritdoc}
    */
   protected function getModuleName() {
-    return 'contextual_link_example';
+    return 'contextual_links_example';
   }
+
   /**
    * Returns a list of CLEEntity objects.
    */
@@ -28,10 +30,10 @@ use DescriptionTemplateTrait;
 
     // Create the renderable array for every CLEEntity.
     foreach ($entity_ids as $id) {
-      // To add a contextual link we need to provide the key #contextual_links.
-      /**
-       *@see \Drupal\contextual\Element\ContextualLinks.(.).
-      */
+      /* To add a contextual link we need to provide the key #contextual_links.
+       *
+       * @see \Drupal\contextual\Element\ContextualLinks.(.).
+       */
       $build[$id] = [
         '#theme' => 'contextual_links_example_entity',
         '#object' => new CLEEntity(['id' => $id], 'contextual_links_example_entity'),
